@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+</head>
+    <body>
+        <p>Our news:</p>
+        <br/>
+        <table>
+            <thead>
+            <tr>
+                <th>Creation time</th>
+                <th>News</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="oneNews : ${news}">
+                <td th:text="${oneNews.getCreatedAt()}">VALUE</td>
+                <td th:text="${oneNews.getText()}">VALUE</td>
+            </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/}">To orders</a>
+    </body>
+</html>

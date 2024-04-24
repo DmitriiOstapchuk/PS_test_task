@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+<p th:text="'All orders for user ' + ${authorizedUser.getLogin()}"></p>
+<br/>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Address</th>
+            <th>Phone number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="oneOrder : ${orders}">
+            <td th:text="${oneOrder.getName()}">VALUE</td>
+            <td th:text="${oneOrder.getQuantity()}">VALUE</td>
+            <td th:text="${oneOrder.getAddress()}">VALUE</td>
+            <td th:text="${oneOrder.getPhoneNumber()}">VALUE</td>
+        </tr>
+    </tbody>
+</table>
+<br/>
+<p>Add new order:</p>
+<form th:method="POST" th:action="@{/}" th:object="${newOrder}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="quantity">Enter quantity: </label>
+    <input type="text" th:field="*{quantity}" id="quantity"/>
+    <br/>
+    <label for="address">Enter address: </label>
+    <input type="text" th:field="*{address}" id="address"/>
+    <br/>
+    <label for="phoneNumber">Enter phone number: </label>
+    <input type="text" th:field="*{phoneNumber}" id="phoneNumber"/>
+
+    <br/>
+    <input type="submit" value="Create order"/>
+</form>
+<br/>
+<form th:method="GET" th:action="@{/news}" >
+    <input type="submit" value="Show news"/>
+</form>
+<br/>
+<form sec:authorize="isAuthenticated()"  th:action="@{/logout}" method="post">
+    <button>Sign out</button>
+</form>
+</body>
+</html>
