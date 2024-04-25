@@ -1,6 +1,3 @@
--- CREATE DATABASE IF NOT EXISTS postgres;
-
--- USE postgres;
 
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS orders;

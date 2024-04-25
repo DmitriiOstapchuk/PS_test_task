@@ -13,7 +13,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-        // Optional: Perform additional actions after successful authentication
-        response.sendRedirect("/"); // Redirect to a custom URL
+
+        response.sendRedirect("/");
     }
 }

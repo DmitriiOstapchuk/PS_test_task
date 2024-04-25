@@ -1,4 +1,4 @@
-package com.dmitrii.ostapchuk.testProject.security;
+package com.dmitrii.ostapchuk.testProject.service.impl;
 
 import com.dmitrii.ostapchuk.testProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
