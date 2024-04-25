@@ -1,6 +1,6 @@
 package com.dmitrii.ostapchuk.testProject.security;
 
-import com.dmitrii.ostapchuk.testProject.service.impl.UserAuthService;
+import com.dmitrii.ostapchuk.testProject.service.impl.UserAuthServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final PasswordEncoder passwordEncoder;
-    private final UserAuthService userAuthService;
+    private final UserAuthServiceImpl userAuthServiceImpl;
 
     @Bean
     public MyAuthenticationSuccessHandler authenticationSuccessHandler() {
@@ -45,7 +45,7 @@ public class SecurityConfig {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userAuthService);
+        authenticationProvider.setUserDetailsService(userAuthServiceImpl);
         authenticationProvider.setPasswordEncoder(passwordEncoder);
         return authenticationProvider;
     }

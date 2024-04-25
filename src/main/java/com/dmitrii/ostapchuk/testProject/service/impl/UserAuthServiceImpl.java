@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 
 @Service
-public class UserAuthService implements UserDetailsService {
+public class UserAuthServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public UserAuthService(UserRepository userRepository) {
+    public UserAuthServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
