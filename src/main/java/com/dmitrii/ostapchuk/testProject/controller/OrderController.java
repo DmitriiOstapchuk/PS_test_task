@@ -5,6 +5,7 @@ import com.dmitrii.ostapchuk.testProject.model.User;
 import com.dmitrii.ostapchuk.testProject.model.dto.OrderTO;
 import com.dmitrii.ostapchuk.testProject.repository.OrderRepository;
 import com.dmitrii.ostapchuk.testProject.repository.UserRepository;
+import com.dmitrii.ostapchuk.testProject.service.OrderService;
 import com.dmitrii.ostapchuk.testProject.util.OrderMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +21,15 @@ import java.security.Principal;
 public class OrderController {
 
     private final UserRepository userRepository;
-    private final OrderRepository orderRepository;
+    private final OrderService orderService;
     private final OrderMapper orderMapper;
+
 
     @GetMapping
     public String findByUser(Model model, Principal principal) {
         User user = userRepository.findByLogin(principal.getName()).get();
         model.addAttribute("authorizedUser", user);
-        model.addAttribute("orders", orderRepository.findByUser(user));
+        model.addAttribute("orders", orderService.findByUser(user));
         model.addAttribute("newOrder", new OrderTO());
         return "orders";
     }
@@ -37,7 +39,7 @@ public class OrderController {
         User user = userRepository.findByLogin(principal.getName()).get();
         Order order = orderMapper.toEntity(orderTO);
         order.setUserId(user.getId());
-        orderRepository.save(order);
+        orderService.save(order);
         return "redirect:/";
     }
 }
